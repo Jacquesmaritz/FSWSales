@@ -1,502 +1,73 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FPM Shadow NAV - Interactive Document</title>
+    <title>Fundamental Portfolio Manager (FPM)</title>
     <style>
-        * {
+        body {
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f5f5f5;
-        }
-        
-        .page {
-            width: 210mm;
-            min-height: 297mm;
-            margin: 20px auto;
-            background: white;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            position: relative;
-            page-break-after: always;
-        }
-        
-        /* Cover Page */
-        .cover-page {
-            background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.5)), 
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23666" width="1200" height="800"/></svg>');
-            background-size: cover;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            padding: 60px;
-        }
-        
-        .header {
-            position: absolute;
-            top: 40px;
-            left: 60px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .logo {
-            width: 45px;
-            height: 45px;
-            background: #e63946;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 24px;
-            color: white;
-        }
-        
-        .brand-name {
-            font-size: 28px;
-            font-weight: 300;
-            letter-spacing: 1px;
-        }
-        
-        .portfolio-tag {
-            position: absolute;
-            top: 40px;
-            right: 60px;
-            background: #e63946;
-            color: white;
-            padding: 12px 24px;
-            font-size: 14px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-        
-        .search-icon {
-            width: 120px;
-            height: 120px;
-            margin-bottom: 40px;
-        }
-        
-        .main-heading {
-            font-size: 56px;
-            font-weight: 700;
-            text-align: center;
-            line-height: 1.2;
-            margin-bottom: 20px;
-            max-width: 700px;
-        }
-        
-        .subheading {
-            font-size: 18px;
-            font-weight: 300;
-            opacity: 0.9;
-            letter-spacing: 0.5px;
-        }
-        
-        .nav-buttons {
-            margin-top: 60px;
-            display: flex;
-            gap: 20px;
-        }
-        
-        .nav-btn {
-            background: #e63946;
-            color: white;
-            border: none;
-            padding: 15px 35px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-        }
-        
-        .nav-btn:hover {
-            background: #d62839;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.4);
-        }
-        
-        /* Why It Matters Page */
-        .why-matters-page {
-            padding: 60px;
-            background: linear-gradient(135deg, rgba(0,0,0,0.6), rgba(0,0,0,0.4)), 
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23555" width="1200" height="800"/></svg>');
-            background-size: cover;
-            color: white;
-        }
-        
-        .page-title {
-            font-size: 42px;
-            font-weight: 700;
-            margin-bottom: 60px;
-        }
-        
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-bottom: 50px;
-        }
-        
-        .benefit-card {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 30px;
-            text-align: center;
+            background-color: #f4f4f4;
             color: #333;
         }
-        
-        .benefit-icon {
-            width: 60px;
-            height: 60px;
-            margin: 0 auto 20px;
-            background: #f0f0f0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
         }
-        
-        .benefit-title {
-            font-size: 18px;
-            font-weight: 700;
+        h1, h2 {
+            color: #005baa;
+        }
+        .features {
+            margin: 20px 0;
+        }
+        .features li {
             margin-bottom: 10px;
-            color: #222;
         }
-        
-        .benefit-desc {
-            font-size: 13px;
-            color: #666;
-            line-height: 1.5;
+        .cta {
+            margin-top: 30px;
         }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
-        
-        .feature-card {
-            background: white;
-            padding: 25px;
-            border-left: 4px solid #e63946;
-        }
-        
-        .feature-title {
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 12px;
-            color: #222;
-        }
-        
-        .feature-desc {
-            font-size: 12px;
-            color: #666;
-            line-height: 1.6;
-        }
-        
-        /* Solutions Page */
-        .solutions-page {
-            padding: 60px;
-            background: #2a2a2a;
-            color: white;
-        }
-        
-        .solutions-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 50px;
-        }
-        
-        .solutions-title {
-            font-size: 32px;
-            font-weight: 700;
-        }
-        
-        .solutions-intro {
-            max-width: 400px;
-            font-size: 13px;
-            line-height: 1.6;
-            color: #ccc;
-        }
-        
-        .checkmarks {
-            list-style: none;
-            margin-top: 15px;
-        }
-        
-        .checkmarks li {
-            padding: 5px 0;
-            padding-left: 25px;
-            position: relative;
-        }
-        
-        .checkmarks li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #e63946;
-            font-weight: bold;
-        }
-        
-        .solutions-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
-        
-        .solution-card {
-            background: white;
-            padding: 30px;
-            color: #333;
-            position: relative;
-        }
-        
-        .solution-number {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            width: 30px;
-            height: 30px;
-            background: #e63946;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            font-weight: bold;
-        }
-        
-        .solution-title {
-            font-size: 16px;
-            font-weight: 700;
-            margin-top: 40px;
-            margin-bottom: 15px;
-            color: #222;
-        }
-        
-        .solution-desc {
-            font-size: 12px;
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-        
-        .solution-tag {
-            background: #e63946;
-            color: white;
-            padding: 8px 16px;
-            font-size: 11px;
-            font-weight: 600;
+        .cta a {
             display: inline-block;
-        }
-        
-        .back-btn {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #e63946;
-            color: white;
-            border: none;
+            margin-right: 15px;
             padding: 10px 20px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
-            z-index: 1000;
+            background-color: #005baa;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
         }
-        
-        .back-btn:hover {
-            background: #d62839;
-        }
-        
-        @media print {
-            .back-btn, .nav-buttons {
-                display: none;
-            }
-            
-            .page {
-                margin: 0;
-                box-shadow: none;
-            }
+        iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <button class="back-btn" onclick="showPage('cover')" id="backBtn" style="display: none;">← Back to Home</button>
-    
-    <!-- Cover Page -->
-    <div class="page cover-page" id="coverPage">
-        <div class="header">
-            <div class="logo">f:</div>
-            <div class="brand-name">fundamental</div>
-        </div>
-        
-        <div class="portfolio-tag">Portfolio Manager</div>
-        
-        <svg class="search-icon" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="45" cy="45" r="25" stroke="white" stroke-width="4"/>
-            <line x1="63" y1="63" x2="85" y2="85" stroke="white" stroke-width="4" stroke-linecap="round"/>
-            <rect x="75" y="30" width="35" height="45" fill="#e63946"/>
-            <line x1="82" y1="40" x2="102" y2="40" stroke="white" stroke-width="2"/>
-            <line x1="82" y1="48" x2="102" y2="48" stroke="white" stroke-width="2"/>
-            <line x1="82" y1="56" x2="102" y2="56" stroke="white" stroke-width="2"/>
-        </svg>
-        
-        <h1 class="main-heading">Take Control with<br>FPM Shadow NAV</h1>
-        <p class="subheading">Ensure Accuracy, Transparency & Oversight</p>
-        
-        <div class="nav-buttons">
-            <button class="nav-btn" onclick="showPage('why')">Why It Matters</button>
-            <button class="nav-btn" onclick="showPage('solutions')">FPM's Solutions</button>
-        </div>
-    </div>
-    
-    <!-- Why It Matters Page -->
-    <div class="page why-matters-page" id="whyPage" style="display: none;">
-        <h2 class="page-title">Why It Matters</h2>
-        
-        <div class="benefits-grid">
-            <div class="benefit-card">
-                <div class="benefit-icon">📋</div>
-                <h3 class="benefit-title">Regulatory Compliance</h3>
-                <p class="benefit-desc">Ensure strong reportable obligations are met</p>
-            </div>
-            
-            <div class="benefit-card">
-                <div class="benefit-icon">👤</div>
-                <h3 class="benefit-title">Enhanced Oversight</h3>
-                <p class="benefit-desc">Gain visibility into fund valuation data</p>
-            </div>
-            
-            <div class="benefit-card">
-                <div class="benefit-icon">✓</div>
-                <h3 class="benefit-title">Accurate Reporting</h3>
-                <p class="benefit-desc">Identify and resolve discrepancies efficiently</p>
-            </div>
-        </div>
-        
-        <div class="features-grid">
-            <div class="feature-card">
-                <h4 class="feature-title">Efficiency</h4>
-                <p class="feature-desc">Automate daily position uploads and eliminate complex transaction replication</p>
-            </div>
-            
-            <div class="feature-card">
-                <h4 class="feature-title">Straight-Through Processing</h4>
-                <p class="feature-desc">Ingest static and market data seamlessly</p>
-            </div>
-            
-            <div class="feature-card">
-                <h4 class="feature-title">Independent NAV Verification</h4>
-                <p class="feature-desc">Upload market data for an extra layer of validation</p>
-            </div>
-            
-            <div class="feature-card">
-                <h4 class="feature-title">Rule-Based Reconciliation</h4>
-                <p class="feature-desc">Workflow-driven solution for precise validation</p>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Solutions Page -->
-    <div class="page solutions-page" id="solutionsPage" style="display: none;">
-        <div class="solutions-header">
-            <div>
-                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
-                    <svg width="50" height="50" viewBox="0 0 50 50">
-                        <circle cx="20" cy="20" r="12" stroke="white" stroke-width="2" fill="none"/>
-                        <line x1="28" y1="28" x2="38" y2="38" stroke="white" stroke-width="2"/>
-                        <rect x="32" y="12" width="15" height="18" fill="#e63946"/>
-                    </svg>
-                    <h2 class="solutions-title">FPM's Shadow<br>NAV Solution</h2>
-                </div>
-            </div>
-            
-            <div class="solutions-intro">
-                <p>FPM offers a Position-Based Shadow NAV that calculates daily NAV using independent data sources. This enables your transfer to processed and reconciled efficiently.</p>
-                <ul class="checkmarks">
-                    <li>Automation</li>
-                    <li>Control</li>
-                    <li>Accuracy</li>
-                    <li>Real-time View</li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="solutions-grid">
-            <div class="solution-card">
-                <div class="solution-number">01</div>
-                <h3 class="solution-title">Generate Opening Positions</h3>
-                <p class="solution-desc">Automatically receive end-of-day positions or import from your custodian</p>
-                <span class="solution-tag">Post-Trade Compliance</span>
-            </div>
-            
-            <div class="solution-card">
-                <div class="solution-number">02</div>
-                <h3 class="solution-title">Asset Allocation Analysis</h3>
-                <p class="solution-desc">Produce intelligent sector positions to gain insight into exposure and automatically generate order initiatives</p>
-            </div>
-            
-            <div class="solution-card">
-                <div class="solution-number">03</div>
-                <h3 class="solution-title">Front Office OMS & Trade Execution</h3>
-                <p class="solution-desc">Monitor real-time positions with create for execution</p>
-                <span class="solution-tag">Pre-Trade Compliance</span>
-            </div>
-            
-            <div class="solution-card">
-                <div class="solution-number">04</div>
-                <h3 class="solution-title">Rule-Based Reconciliation</h3>
-                <p class="solution-desc">Automated rule-based reconciliation of day-of-day positions against expected returns based on market inputs for that day</p>
-            </div>
-            
-            <div class="solution-card">
-                <div class="solution-number">05</div>
-                <h3 class="solution-title">External End-of-Day Positions</h3>
-                <p class="solution-desc">Automatically position files including secured inputs be sent by end-of-day of positions</p>
-            </div>
-            
-            <div class="solution-card">
-                <div class="solution-number">06</div>
-                <h3 class="solution-title">Independent Valuations</h3>
-                <p class="solution-desc">Independent prices, exchange rates and other relevant data sourced in calculations to create comparable results</p>
-            </div>
-        </div>
-    </div>
+    <div class="container">
+        <h1>Fundamental Portfolio Manager (FPM)</h1>
+        <p>FPM is a powerful, flexible, and scalable investment management solution designed to streamline operations and enhance decision-making for portfolio managers.</p>
 
-    <script>
-        function showPage(page) {
-            const coverPage = document.getElementById('coverPage');
-            const whyPage = document.getElementById('whyPage');
-            const solutionsPage = document.getElementById('solutionsPage');
-            const backBtn = document.getElementById('backBtn');
-            
-            coverPage.style.display = 'none';
-            whyPage.style.display = 'none';
-            solutionsPage.style.display = 'none';
-            
-            if (page === 'cover') {
-                coverPage.style.display = 'flex';
-                backBtn.style.display = 'none';
-            } else if (page === 'why') {
-                whyPage.style.display = 'block';
-                backBtn.style.display = 'block';
-            } else if (page === 'solutions') {
-                solutionsPage.style.display = 'block';
-                backBtn.style.display = 'block';
-            }
-            
-            window.scrollTo(0, 0);
-        }
-    </script>
+        <h2>Key Features</h2>
+        <ul class="features">
+            <li><strong>Multi-Asset Support:</strong> Manage equities, fixed income, derivatives, and more.</li>
+            <li><strong>Real-Time Valuation:</strong> Accurate, up-to-date portfolio insights.</li>
+            <li><strong>Compliance & Reporting:</strong> Built-in tools for regulatory and client reporting.</li>
+            <li><strong>Integration Ready:</strong> Seamlessly connects with your existing systems.</li>
+        </ul>
+
+        <h2>Product Demo</h2>
+        <iframe src="https://www.youtube.com/embed/your-demo-video-id" allowfullscreen></iframe>
+
+        <div class="cta">
+            <a href="https://www.fundamental.net">Visit Website</a>
+            <a href="https://www.fundamental.net/contact">Book a Demo</a>
+        </div>
+    </div>
 </body>
 </html>
